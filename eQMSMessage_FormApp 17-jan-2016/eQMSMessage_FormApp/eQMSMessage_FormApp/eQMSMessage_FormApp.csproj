@@ -90,6 +90,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AutoSMS.txt" />
+    <None Include="Resources\bg.png" />
     <Content Include="Resources\ComPort.xml" />
     <Content Include="Resources\ConnectionString.txt" />
     <None Include="Resources\samsungBackground.jpg" />

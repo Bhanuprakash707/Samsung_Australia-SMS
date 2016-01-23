@@ -34,6 +34,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblmessage = new System.Windows.Forms.Label();
+            this.lblrunning = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -45,13 +47,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 150);
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.Location = new System.Drawing.Point(100, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 25);
+            this.label1.Size = new System.Drawing.Size(407, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Q\'Soft SMS APPLICATION";
+            this.label1.Text = "SAMSUNG Q\'Soft SMS APPLICATION";
             // 
             // label3
             // 
@@ -84,20 +88,54 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 4;
             // 
+            // lblmessage
+            // 
+            this.lblmessage.AutoSize = true;
+            this.lblmessage.BackColor = System.Drawing.Color.White;
+            this.lblmessage.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmessage.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblmessage.Location = new System.Drawing.Point(186, 226);
+            this.lblmessage.Name = "lblmessage";
+            this.lblmessage.Size = new System.Drawing.Size(83, 28);
+            this.lblmessage.TabIndex = 5;
+            this.lblmessage.Text = "label5";
+            // 
+            // lblrunning
+            // 
+            this.lblrunning.AutoSize = true;
+            this.lblrunning.BackColor = System.Drawing.Color.White;
+            this.lblrunning.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblrunning.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblrunning.Location = new System.Drawing.Point(187, 286);
+            this.lblrunning.Name = "lblrunning";
+            this.lblrunning.Size = new System.Drawing.Size(71, 24);
+            this.lblrunning.TabIndex = 5;
+            this.lblrunning.Text = "label5";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.BackgroundImage = global::eQMSMessage_FormApp.Properties.Resources.samsungBackground;
-            this.ClientSize = new System.Drawing.Size(606, 441);
+            this.BackgroundImage = global::eQMSMessage_FormApp.Properties.Resources.bg;
+            this.ClientSize = new System.Drawing.Size(602, 437);
+            this.ControlBox = false;
+            this.Controls.Add(this.lblrunning);
+            this.Controls.Add(this.lblmessage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ATT Systems Group";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -111,6 +149,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblmessage;
+        private System.Windows.Forms.Label lblrunning;
     }
 }
 

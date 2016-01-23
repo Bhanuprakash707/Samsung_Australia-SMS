@@ -15,26 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_414148F0677F4899B720A2E8BA1E03B7"
+        "MsmKey" = "8:_5813380B87384BADB5F6B332A4196B8B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B809E7AB1D5D27596E00045D2A5B405F"
-        "OwnerKey" = "8:_414148F0677F4899B720A2E8BA1E03B7"
+        "MsmKey" = "8:_763633EE57E23F5B39CC8D1C42B02313"
+        "OwnerKey" = "8:_5813380B87384BADB5F6B332A4196B8B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B809E7AB1D5D27596E00045D2A5B405F"
+        "OwnerKey" = "8:_763633EE57E23F5B39CC8D1C42B02313"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_414148F0677F4899B720A2E8BA1E03B7"
+        "OwnerKey" = "8:_5813380B87384BADB5F6B332A4196B8B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -55,6 +55,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -71,6 +92,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -100,14 +142,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B809E7AB1D5D27596E00045D2A5B405F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_763633EE57E23F5B39CC8D1C42B02313"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MessageMedia, Version=2.4.4.0, Culture=neutral, PublicKeyToken=30fbb25f5dfe1b42, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B809E7AB1D5D27596E00045D2A5B405F"
+                    "_763633EE57E23F5B39CC8D1C42B02313"
                     {
                     "Name" = "8:MessageMedia.dll"
                     "Attributes" = "3:512"
@@ -188,7 +230,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:samsungSMS"
         "ProductCode" = "8:{66DA2612-DA7D-4A2C-B8BD-9D20FC7D26CB}"
-        "PackageCode" = "8:{7D296637-F443-4A21-872F-B833BE98C83E}"
+        "PackageCode" = "8:{8B83BB0C-BE74-456C-98C8-48D9D6B4BF91}"
         "UpgradeCode" = "8:{1BB88167-5BF3-42B4-BC53-D5C297C0533E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -196,12 +238,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:ATT SYSTEMS INDIAATT SYSTEMS INDIA"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:samsungSMS"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:ATT SYSTEMS INDIA"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -308,7 +350,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3538111814134597A559F40EC2DA2574"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8B83766862894E4C981CC07C33A258A8"
             {
             "Name" = "8:Samsung"
             "Arguments" = "8:"
@@ -316,7 +358,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_414148F0677F4899B720A2E8BA1E03B7"
+            "Target" = "8:_5813380B87384BADB5F6B332A4196B8B"
             "Folder" = "8:_D5419995319646468BD82B1B406B85D3"
             "WorkingFolder" = "8:_C6620B09032549339E996EE68F0C06DF"
             "Icon" = "8:"
@@ -721,7 +763,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_414148F0677F4899B720A2E8BA1E03B7"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5813380B87384BADB5F6B332A4196B8B"
             {
             "SourcePath" = "8:..\\eQMSMessage_FormApp\\obj\\x86\\Debug\\eQMSMessage_FormApp.exe"
             "TargetName" = "8:"

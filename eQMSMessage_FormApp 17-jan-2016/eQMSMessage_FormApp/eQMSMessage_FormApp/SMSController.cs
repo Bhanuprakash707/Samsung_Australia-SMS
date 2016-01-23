@@ -182,6 +182,24 @@ namespace eQMSMessage_FormApp
             }
         }
 
+        public void updatesmsstatusflag(SMSView smsview)
+        {
+            SMSDAO smsdao = new SMSDAO();
+            try
+            {
+                // Getting Data From Dao
+                smsdao.updatesmsstatusflag(smsview);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                smsdao = null;
+            }
+        }
+
         public DataTable GetMissedQueueSentSMS(SMSView smsview)
         {
             SMSDAO smsdao = new SMSDAO();

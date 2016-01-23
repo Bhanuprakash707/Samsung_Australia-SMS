@@ -15,7 +15,7 @@ namespace eQMSMessage_FormApp
         // SMS View - Initiallizing Variables
 
         #region SMS View - Initiallizing Variables
-
+        private int _qvisittnxid;
         private string _buttoneventflag;
         private string _deliveryReport;
         private string _smsstatusflag;
@@ -140,6 +140,18 @@ namespace eQMSMessage_FormApp
             set
             {
                 _buttonvisittnx = value;
+            }
+        }
+
+        public int Qvisittnxid
+        {
+            get
+            {
+                return _qvisittnxid;
+            }
+            set
+            {
+                _qvisittnxid = value;
             }
         }
 

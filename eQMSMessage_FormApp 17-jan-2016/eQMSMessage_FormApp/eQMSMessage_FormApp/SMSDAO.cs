@@ -311,7 +311,8 @@ namespace eQMSMessage_FormApp
             try
             {
                 SqlConnection MySqlConnection = new SqlConnection(ConnectionString);
-                SqlCommand MySqlCommand = new SqlCommand("select appointment_id,appointment_customer_id,customer_mobile,appointment_time,customer_firstname,appointment_centre_id from tbl_appointment_tnx,tbl_customerreg_mst where customer_id=appointment_customer_id and CONVERT(date,appointment_time)=CONVERT(date,GETDATE())", MySqlConnection);
+                //SqlCommand MySqlCommand = new SqlCommand("select appointment_id,appointment_customer_id,customer_mobile,appointment_time,customer_firstname,appointment_centre_id from tbl_appointment_tnx,tbl_customerreg_mst where customer_id=appointment_customer_id and CONVERT(date,appointment_time)=CONVERT(date,GETDATE())", MySqlConnection);
+                SqlCommand MySqlCommand = new SqlCommand("select appointment_id,appointment_customer_id,customer_mobile,appointment_time,customer_firstname,appointment_centre_id from tbl_appointment_tnx,tbl_customerreg_mst where customer_id=appointment_customer_id and CONVERT(date,appointment_time)=CONVERT(date,GETDATE())  and sms_alert='A' ", MySqlConnection);
 
 
                 MySqlConnection.Open();
@@ -1220,6 +1221,39 @@ namespace eQMSMessage_FormApp
             }
         }
         #endregion Update SMS_Alert statsus flag
+
+
+
+        #region Updating sms_status_flag='D' for MissQ
+        public void updatesmsstatusflag(SMSView smsview)
+        {
+            SqlDataAdapter sqlad = new SqlDataAdapter();
+            try
+            {
+                con = new SqlConnection(ConnectionString);
+                con.Open();
+                string sql = "update tbl_queue_tnx set sms_status_flag='D' where queue_visit_tnxid=@queue_visit_tnxid";
+
+                cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@queue_visit_tnxid", smsview.Qvisittnxid);
+                sqlad.InsertCommand = cmd;
+                cmd.ExecuteNonQuery();
+
+
+                //return "0";
+            }
+            catch
+            {
+                //return "1";
+            }
+            finally
+            {
+                con.Close();
+                //sqlrd.Close();
+                cmd.Cancel();
+            }
+        }
+        #endregion  Updating sms_status_flag='D' for MissQ
 
         #region SMS - Get Appointment Alert SMSexpire
 

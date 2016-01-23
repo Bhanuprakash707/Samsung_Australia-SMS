@@ -70,6 +70,16 @@ namespace eQMSMessage_FormApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg {
+            get {
+                object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;&lt;!--First Comment XmlTextWriter Sample Example--&gt;&lt;!--XmlFile.xml in root dir--&gt;&lt;ComPort&gt;&lt;r:ComPort xmlns:r=&quot;urn:ComPort&quot;&gt;&lt;portname&gt;com3&lt;/portname&gt;&lt;baudrate&gt;9600&lt;/baudrate&gt;&lt;databits&gt;8&lt;/databits&gt;&lt;stopbits&gt;1&lt;/stopbits&gt;&lt;paritybits&gt;None&lt;/paritybits&gt;&lt;readtimeout&gt;300&lt;/readtimeout&gt;&lt;writetimeout&gt;300&lt;/writetimeout&gt;&lt;/r:ComPort&gt;&lt;/ComPort&gt;.
         /// </summary>
         internal static string ComPort {

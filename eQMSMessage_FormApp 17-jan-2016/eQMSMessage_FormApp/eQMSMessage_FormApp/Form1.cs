@@ -1240,6 +1240,7 @@ namespace eQMSMessage_FormApp
             foreach (DataRow dr in MissedQueue.Rows)
             {
                 smsview.QueueTransaction = (Convert.ToInt32(dr["queue_visit_tnxid"].ToString()));
+                int qti = (Convert.ToInt32(dr["queue_visit_tnxid"].ToString()));
                 string MissedQueueNo = (dr["visit_queue_no_show"].ToString());
                 string MissedPhoneNo = (Convert.ToString(dr["customer_mobile"].ToString()));
                 long CustId = (Convert.ToInt64(dr["customer_id"].ToString()));
@@ -1255,7 +1256,7 @@ namespace eQMSMessage_FormApp
                 DateTime apt = Convert.ToDateTime(appt);
                 string cappt = apt.ToString("HH:mm");
                 string custaptime = apt.ToShortTimeString();
-                string mobnum = dr["customer_mobile"].ToString();
+                string mobnum = "61"+ dr["customer_mobile"].ToString();
 
                 try
                 {
@@ -1350,79 +1351,7 @@ namespace eQMSMessage_FormApp
 
                             //end of Samsung SMS
                             #endregion Samsung SMS gateway
-                            //SmsStatusMsg = oWeb.DownloadString(URL);
-                            //if (SmsStatusMsg.Contains("<br>"))
-                            //{
-                            //    SmsStatusMsg = SmsStatusMsg.Replace("<br>", ", ");
-                            //}
-                            //smsview.SMSStatusFlag = "S";
-                            //smscontroller.GetQueueTokenGenerationSentSMS(smsview);
-                            //// Thread.Sleep(100);
-                            //DataTable dt1 = new DataTable();
-                            //dt1 = smscontroller.GetRetrieveSMSstatusFlag(smsview);
-
-                            //foreach (DataRow dr123 in dt1.Rows)
-                            //{
-                            //    string Sflag = (dr123["message_status_flag"].ToString());
-                            //    string uflag = Convert.ToString("M");
-                            //    if (Sflag == uflag)
-                            //    {
-                            //        smsview.SMSStatusFlag = "S";
-                            //        smscontroller.GetQueueTokenGenerationSentSMS(smsview);
-                            //    }
-                            //    else
-                            //    {
-                            //        #region delivery Report
-                            //        //SmsStatusMsg = SmsStatusMsg.Replace("\r\n", "");
-                            //        //SmsStatusMsg = SmsStatusMsg.Replace("\t", "");
-                            //        //SmsStatusMsg = SmsStatusMsg.Replace("\n", "");
-                            //        //XmlDocument xml = new XmlDocument();
-                            //        //xml.LoadXml(SmsStatusMsg); //myXmlString is the xml file in string //copying xml to string: string myXmlString = xmldoc.OuterXml.ToString();
-                            //        //XmlNodeList xnList = xml.SelectNodes("smslist");
-                            //        //foreach (XmlNode xn in xnList)
-                            //        //{
-                            //        //    XmlNode example = xn.SelectSingleNode("sms");
-                            //        //    if (example != null)
-                            //        //    {
-                            //        //        string na = example["messageid"].InnerText;
-                            //        //        string no = example["smsclientid"].InnerText;
-                            //        //        string mobileno = example["mobile-no"].InnerText;
-                            //        //        string URL1 = "http://sms.proactivesms.in/getDLR.jsp?userid=attsystm&password=attsystm&messageid=" + na + "redownload=yes&responce type=xml";
-
-                            //        //        SmsDeliveryStatus = client.DownloadString(URL1);
-                            //        //        SmsDeliveryStatus = SmsDeliveryStatus.Replace("\r\n", "");
-                            //        //        SmsDeliveryStatus = SmsDeliveryStatus.Replace("\t", "");
-                            //        //        SmsDeliveryStatus = SmsDeliveryStatus.Replace("\n", "");
-                            //        //        XmlDocument xml1 = new XmlDocument();
-                            //        //        xml.LoadXml(SmsDeliveryStatus); //myXmlString is the xml file in string //copying xml to string: string myXmlString = xmldoc.OuterXml.ToString();
-                            //        //        //XmlNodeList xnList1 = xml.SelectNodes("response");
-
-                            //        //        //foreach (XmlNode xn1 in xnList1)
-                            //        //        //{
-                            //        //        XmlNode example1 = xml.SelectSingleNode("response");
-                            //        //        if (example1 != null)
-                            //        //        {
-                            //        //            //string rscode = example1["responsecode"].InnerText;
-                            //        //            smsview.DeliveryReport = example1["resposedescription"].InnerText;
-                            //        //            //string dlrcount = example1["dlristcount"].InnerText;
-                            //        //            //string pendingcount = example1["pendingdrcount"].InnerText;
-
-                            //        //        }
-                            //        //    }
-                            //        #endregion delivery Report
-                            //        // smsview.QueueTransaction = Qtnxid;
-                                   
-                                   //// smsview.MySms = strmsg;
-                                   // smsview.SmsDesc = strmsg;
-                                   // smsview.QueueNo = MissedQueueNo;
-                                   // smsview.PhoneNo = MissedPhoneNo;
-                                   // smsview.DeliveryReport = "y";
-                                   //// smsview.IncomingsmsFlag = "M";
-                                   // smsview.SMSDateTime = System.DateTime.Now;
-                                   // smsview.SMSStatusFlag = "S";
-                                   // smsview.SmstnxId = 1;
-                                   // smsview.SmsVisittnxId = 2;
-                                   // smsview.CentreId = "";
+                           
                            
                             #region inserting to tbl_sms_tnx
                             smsview.CustId = CustId;
@@ -1440,36 +1369,14 @@ namespace eQMSMessage_FormApp
                             string i;
                             i = smscontroller.getInsertAppointmentAlertSms(smsview);
                             #endregion into tbl_sms_tnx
-                            // string d;
-                            // d = smscontroller.GetInsertMissedQSMS(smsview);
-                            // DataTable QueueTokenGenerationSentSMS = new DataTable();
-                            // }
-                            //smsview.SmsUpdatedDateTime = System.DateTime.Now;
-                            //smsview.SmsActive = 'Y';
-                            //smsview.SMSContentTypeId = 2;
-                            //smsview.SmsAlert = 2;
-                            //smsview.SmsUpdatedBy = "Admin";
-                           // string i;
-                            //#region inserting to tbl_sms_tnx
-                            //smsview.CustId = custid;
-                            //smsview.SmsDesc = strmsg;
-                            //smsview.PhoneNo = mobnum;
-                            //smsview.DeliveryReport = "y";
-                            //smsview.SmsDesc = strmsg;
-                            //smsview.IncomingsmsFlag = "M";
-                            //smsview.SmstnxId = 1;
-                            //smsview.SmsVisittnxId = 2;
-                            //smsview.SMSDateTime = System.DateTime.Now;
-                            //smsview.SMSStatusFlag = "M";
-                            //smsview.QueueNo = Convert.ToString("1");
-                            //smsview.CentreId = "";
-                            //smsview.SMSDateTime = System.DateTime.Now;
-                            //string i;
-                            //i = smscontroller.getInsertAppointmentAlertSms(smsview);
-                            //#endregion into tbl_sms_tnx
 
-                           // i = smscontroller.getInsertAppointmentAlertSms(smsview);
-                            // }
+                            #region Updating sms_status_flag='D' for MissQ
+                            smsview.Qvisittnxid = qti;
+                            //smsview.SMSalert = 'E';
+
+                            smscontroller.updatesmsstatusflag(smsview);
+                            #endregion End Updating sms_status_flag
+
                         }
                         //}
                         else
@@ -1654,6 +1561,12 @@ namespace eQMSMessage_FormApp
                                 i = smscontroller.getInsertAppointmentAlertSms(smsview);
                                 #endregion into tbl_sms_tnx
 
+                                #region Updating sms_status_flag='D' for MissQ
+                                smsview.Qvisittnxid = qti;
+                                //smsview.SMSalert = 'E';
+
+                                smscontroller.updatesmsstatusflag(smsview);
+                                #endregion End Updating sms_status_flag
                             }
                         }
                     }
@@ -1682,19 +1595,21 @@ namespace eQMSMessage_FormApp
             bool connection = NetworkInterface.GetIsNetworkAvailable();
             if (connection == true)
             {
-                label3.Text = "Internet Is Available";
-                label4.Text = "Application Is Running...";
-                QueueTokenGenerationSMS();
+                lblmessage.Text = "Internet Is Available";
+                lblrunning.Text = "Application Is Running...";
                 MissedQueueSendingSMS();
-                appointmentalert();
                 AppRemender();
                 ExpiredAppointmentNotification();
+
+                //QueueTokenGenerationSMS();
+                //appointmentalert();
+                
                 System.Data.SqlClient.SqlConnection.ClearAllPools();
             }
             else if (connection == false)
             {
-                label3.Text = "Internet Is Not Available";
-                label4.Text = "SMS Are Not Sending!!!";
+                lblmessage.Text = "Internet Is Not Available";
+                lblrunning.Text = "SMS Are Not Sending!!!";
                 AllMetheds();
             }
         }
@@ -2688,14 +2603,14 @@ namespace eQMSMessage_FormApp
             {
 
 
-                label3.Text = "Internet Is Available";
-                label4.Text = "Application Is Running...";
+                lblmessage.Text = "Internet Is Available";
+                lblrunning.Text = "Application Is Running...";
 
             }
             else if (connection == false)
             {
-                label3.Text = "Internet Is Not Available";
-                label4.Text = "SMS Are Not Sending!!!";
+                lblmessage.Text = "Internet Is Not Available";
+                lblrunning.Text = "SMS Are Not Sending!!!";
 
             }
             label2.Text = "Copyright " + Convert.ToChar(169) + " ATT Systems Group 2016";///169 is copyright symbol
@@ -3202,6 +3117,8 @@ namespace eQMSMessage_FormApp
         }
         #endregion timer
 
+        #region appointmentalert
+        
         public void appointmentalert()
         {
             try
@@ -3342,6 +3259,7 @@ namespace eQMSMessage_FormApp
                 throw ex;
             }
         }
+        #endregion appointmentalert
 
         #region SMS Appointment Remender
 
@@ -3353,7 +3271,8 @@ namespace eQMSMessage_FormApp
                 SMSController smscont = new SMSController();
                 Appdetails = smscont.AppRemender();
 
-                DateTime re = Convert.ToDateTime("07:00");
+                DateTime re = Convert.ToDateTime("07:00");//Every Day at 7:00 AUS Time
+                //DateTime re = Convert.ToDateTime("23:10");
                 String ret = re.ToString("hh:mm");
                 DateTime syst = DateTime.Now;
                 string systime = syst.ToString("hh:mm");
@@ -3366,18 +3285,27 @@ namespace eQMSMessage_FormApp
                         int custid = Convert.ToInt32(dr["appointment_customer_id"].ToString());
                         string cname = dr["customer_firstname"].ToString();
                         string appt = dr["appointment_time"].ToString();
-
+                        int centreid = Convert.ToInt32(dr["appointment_centre_id"].ToString());
                         DateTime apt = Convert.ToDateTime(appt);
                         string cappt = apt.ToString("HH:mm");
                         string custaptime = apt.ToShortTimeString();
-                        string mobnum = dr["customer_mobile"].ToString();
+                        string mobnum = "61"+ dr["customer_mobile"].ToString();
+                        string centrename;
+                        if (centreid==1)
+                        {
+                            centrename = "Sydney";
+                        }
+                        else if (centreid == 58)
+                        {
+                            centrename = "Melbourne central";
+                        }
+                        else
+                        {
+                            centrename = "Highpoint";
+                        }
 
 
-
-                        //String systime="";
-
-
-                        string strmsg = "Dear " + cname + ",\r\n your appointment with the Samsung Experience Store, Sydney is at " + cappt + " today.\r\nPlease bring a copy of your purchase invoice and back-up your data before your appointment to avoid data loss, Look forward to seeing you.";
+                        string strmsg = "Dear " + cname + ",\r\nReminder your appointment with the Samsung Experience Store, " + centrename + " is at " + cappt + " today.\r\nPlease bring a copy of your purchase invoice and back-up your data before your appointment to avoid data loss, Looking forward to seeing you.";
                         //“Hi Kara, Reminder your appointment with the Samsung Experience Store, Sydney is at 11:15 today. Please bring a copy of your purchase invoice and back-up your data before your appointment to avoid data loss. Look forward to seeing you.”
                         smsview.SmsDesc = strmsg;
                         #region Samsung SMS gateway
@@ -3506,7 +3434,7 @@ namespace eQMSMessage_FormApp
                     int appid = Convert.ToInt32(dr["appointment_id"].ToString());
                     string app = dr["appointment_time"].ToString();
                     DateTime adt = Convert.ToDateTime(app);
-                    string mobileno = dr["appointment_mobileno"].ToString();
+                    string mobileno = "61" + dr["appointment_mobileno"].ToString();
                     long custid = Convert.ToInt64(dr["appointment_customer_id"].ToString());
                     DateTime syst = DateTime.Now;
                     string apptime = adt.ToString("HH:mm");
@@ -3514,8 +3442,8 @@ namespace eQMSMessage_FormApp
                     TimeSpan t1 = new TimeSpan(01, 00, 00);
                     timeapp1 = timeapp1 + t1;
                     string timeapp = timeapp1.ToString("HH:mm");
-                    //string systemtime = syst.ToString("HH:mm");
-                    string systemtime = "20:20";
+                    string systemtime = syst.ToString("HH:mm");
+                    //string systemtime = "22:19";
                     //DateTime re = Convert.ToDateTime("10:31");
                     //String ret = re.ToString("HH:mm");
                     DataTable dtsmsview = new DataTable();
@@ -3585,29 +3513,7 @@ namespace eQMSMessage_FormApp
                             Messaging.MessageController.SendMessages();
                             #endregion Samsung SMS gateway
 
-                            #region Update SMS_Alert statsus flag
-
-                            smsview.AppointmentID = appid;
-                            smsview.SMSalert = 'E';
-                            sms.updatesmsalert(smsview);
-                            #endregion Update SMS_Alert statsus flag
-
-                            //#region inserting to tbl_sms_content_mst
-                            //smsview.CustId = CustId;
-                            //smsview.SmsDesc = strmsg;
-                            ////smsview.QueueNo = MissedQueueNo;
-                            ////smsview.PnoneNo = MissedPhoneNo;
-                            //smsview.IncomingsmsFlag = "M";
-                            //smsview.SMSDateTime = System.DateTime.Now;
-                            //smsview.SmsUpdatedDateTime = System.DateTime.Now;
-                            //smsview.SmsActive = 'Y';
-                            //smsview.SMSContentTypeId = 2;
-                            //smsview.SmsAlert = 2;
-                            //smsview.SmsUpdatedBy = "Admin";
-                            //string i;
-                            //i = smscontroller.getInsertAppointmentAlertSms(smsview);
-
-                            //#endregion into tbl_sms_content_mst
+      
                             #region inserting to tbl_sms_tnx
                             smsview.CustId = custid;
                             smsview.SmsDesc = strmsg;
@@ -3624,6 +3530,15 @@ namespace eQMSMessage_FormApp
                             string i;
                             i = smscontroller.getInsertAppointmentAlertSms(smsview);
                             #endregion into tbl_sms_tnx
+
+                            #region Update SMS_Alert statsus flag
+
+                            smsview.AppointmentID = appid;
+                            smsview.SMSalert = 'E';
+                            sms.updatesmsalert(smsview);
+
+                            #endregion Update SMS_Alert statsus flag
+
                         }
                     }
                 }
