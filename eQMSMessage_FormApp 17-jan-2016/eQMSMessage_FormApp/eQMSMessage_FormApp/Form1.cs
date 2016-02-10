@@ -119,15 +119,15 @@ namespace eQMSMessage_FormApp
                 QueueTokenGeneration = smscontroller.GetGeneratedQueue();
                 foreach (DataRow dr in QueueTokenGeneration.Rows)
                 {
-                    //  ThreadRelease = 1;
+                    // ThreadRelease = 1;
                     // Thread.Sleep(2000);
                     DataTable dt = new DataTable();
-                    smsview.QueueTransaction = (Convert.ToInt32(dr["queu_visit_tnxid"].ToString()));
+                    smsview.QueueTransaction = (Convert.ToInt32(dr["queue_visit_tnxid"].ToString()));
                     string QueueTokenGenerationSMS = (dr["visit_queue_no_show"].ToString());
-                    string QueueTokenGenerationPhoneNo = (Convert.ToString(dr["members_mobile"].ToString()));
+                    string QueueTokenGenerationPhoneNo = (Convert.ToString(dr["visit_customer_id"].ToString()));
                     long QueueCustomerId = (Convert.ToInt64(dr["visit_customer_id"].ToString()));
                     smsview.DepartmentID = (Convert.ToInt32(dr["queue_department_id"]));
-                    long memberId = (Convert.ToInt64(dr["members_id"].ToString()));
+                    string Cname = ((dr["visit_customer_name"]).ToString());
                     // dt = smscontroller.GetQueuePosition(smsview);
                     // string QueueTokenGenerationPhoneNo = 61 + QueueTokenGenerationPhoneNo1;
                     smsview.CustId = QueueCustomerId;
@@ -137,7 +137,7 @@ namespace eQMSMessage_FormApp
 
                     foreach (DataRow dc in dt.Rows)
                     {
-                        smsview.QueueTransaction = (Convert.ToInt32(dc["queu_visit_tnxid"].ToString()));
+                        smsview.QueueTransaction = (Convert.ToInt32(dc["queue_visit_tnxid"].ToString()));
                         string dname = (dc["department_desc"].ToString());
                         // Thread.Sleep(100);
                         try
@@ -153,6 +153,7 @@ namespace eQMSMessage_FormApp
                                     // if (dt.Rows[i]["visit_queue_no_show"] == QueueToken)
                                     {
                                         DataTable CheckMessage = new DataTable();
+
                                         CheckMessage = smscontroller.GetNewMessageExistance(smsview);
                                         if (CheckMessage.Rows.Count <= 0)
                                         {
@@ -166,19 +167,13 @@ namespace eQMSMessage_FormApp
                                                 dtc = smscontroller.GetCustId(smsview);
                                                 foreach (DataRow drc in dtc.Rows)
                                                 {
-                                                    long custid = (Convert.ToInt64(drc["visit_customer_id"].ToString()));
-                                                    smsview.MenberId = (Convert.ToInt32(drc["members_id"].ToString()));
-                                                    smsview.CustId = custid;
+                                                    
 
                                                     //retrieve name
-                                                    dtCustName = smscontroller.GetCustomerName(smsview);
-                                                    foreach (DataRow Custname in dtCustName.Rows)
-                                                    {
-                                                        string custfname = (Custname["members_firstname"].ToString());
-                                                        string custlname = (Custname["members_lastname"].ToString());
-                                                        string Cname = custfname + " " + custlname;
-                                                        string mobileno = (Custname["members_mobile"].ToString());
-                                                        string toAddress = (Custname["members_email"].ToString());
+                                                    //dtCustName = smscontroller.GetCustomerName(smsview);
+                                                    //foreach (DataRow Custname in dtCustName.Rows)
+                                                    //{
+                                                        
                                                         //string mobileno = 61 + mobileno1;
                                                         //retrieve name
                                                         string SmsStatusMsg = string.Empty;
@@ -199,17 +194,17 @@ namespace eQMSMessage_FormApp
                                                             //    smtp.Send(msgMail);
                                                             //}
                                                             #endregion email
-                                                            if (mobileno != "")
+                                                            if (QueueTokenGenerationPhoneNo != "")
                                                             {
 
-                                                                if (mobileno.Length == 11)
+                                                                if (QueueTokenGenerationPhoneNo.Length == 11)
                                                                 {
                                                                     int t = 5 * pos;
 
                                                                     TimeSpan span = TimeSpan.FromMinutes(t);
                                                                     string apxtime = span.ToString(@"hh\:mm");
-                                                                    string strmsg = "Hi" + " " + Cname + ",Your ticket number is:" + QueueTokenGenerationSMS + " . Thanks";
-
+                                                                    string strmsg = "Hi" + " " + Cname + ", Your ticket number is:" + QueueTokenGenerationSMS + " .Approximate time of service  at "+""+apxtime+", Thanks.";
+                                                                    //Sample: "Hi Kara, your ticket number is 040, Approximate time of service  at 11.40 AM”
                                                                     //string strmsg1 = "Dear" + " " + Cname + ", Welcome to the Ambulatory Care Centre.\r\nYour ticket number is:" + QueueTokenGenerationSMS + " .\r\nTicket number will be called and displayed in the waiting room TV based on your appointment time. Please wait in the waiting room. Thanks";
                                                                     //\r\n\rTo track status of your queue no send SMS to 9214002002 e.g.: ATT<space><your Q number>";
                                                                     #region Proactive SMS Gateway
@@ -286,11 +281,12 @@ namespace eQMSMessage_FormApp
                                                                     //"Hi Kara, your ticket number is 040, Approximate waiting time is 00:40 minutes/hours”
 
                                                                     Messaging.MessageController.Settings.DeliveryReport = true;
-                                                                    SMSMessage smsobj = new SMSMessage(mobileno, strmsg);
+                                                                    SMSMessage smsobj = new SMSMessage(QueueTokenGenerationPhoneNo, strmsg);
                                                                     Messaging.MessageController.AddToQueue(smsobj);
                                                                     Messaging.MessageController.SendMessages();
                                                                     //end of Samsung SMS
                                                                     #endregion AussieSMS Gateway
+
                                                                     //SmsStatusMsg = oWeb.DownloadString(URL);
                                                                     // if (SmsStatusMsg.Contains("<br>"))
                                                                     //  {
@@ -435,15 +431,16 @@ namespace eQMSMessage_FormApp
                                                                 }
                                                                 else
                                                                 {
-                                                                    if (mobileno.Length == 9)
+                                                                    if (QueueTokenGenerationPhoneNo.Length == 9)
                                                                     {
-                                                                        mobileno = 61 + mobileno;
+                                                                        QueueTokenGenerationPhoneNo = 61 + QueueTokenGenerationPhoneNo;
 
                                                                         int t = 5 * pos;
 
                                                                         TimeSpan span = TimeSpan.FromMinutes(t);
                                                                         string apxtime = span.ToString(@"hh\:mm");
-                                                                        string strmsg = "Dear" + " " + Cname + ", Welcome to the Samsung Experience Store .\r\nYour ticket number is:" + QueueTokenGenerationSMS + " . Thanks";
+                                                                        //string strmsg = "Dear" + " " + Cname + ", Welcome to the Samsung Experience Store .\r\nYour ticket number is:" + QueueTokenGenerationSMS + " . Thanks";
+                                                                        string strmsg = "Hi" + " " + Cname + ", Your ticket number is:" + QueueTokenGenerationSMS + " .Approximate time of service  at " + "" + apxtime + ", Thanks.";
                                                                         //\r\n\rTo track status of your queue no send SMS to 9214002002 e.g.: ATT<space><your Q number>";
                                                                         #region Proactive SMS Gateway
                                                                         //string URL = "http://sms.proactivesms.in/sendsms.jsp?user=attsystm&password=attsystm&mobiles=" + mobileno + "&sms=" + strmsg1 + "&senderid=ATTIPL";
@@ -522,7 +519,7 @@ namespace eQMSMessage_FormApp
                                                                         //"Hi Kara, your ticket number is 040, Approximate waiting time is 00:40 minutes/hours”
 
                                                                         Messaging.MessageController.Settings.DeliveryReport = true;
-                                                                        SMSMessage smsobj = new SMSMessage(mobileno, strmsg);
+                                                                        SMSMessage smsobj = new SMSMessage(QueueTokenGenerationPhoneNo, strmsg);
                                                                         Messaging.MessageController.AddToQueue(smsobj);
                                                                         Messaging.MessageController.SendMessages();
                                                                         //end of Samsung SMS
@@ -541,7 +538,7 @@ namespace eQMSMessage_FormApp
 
                                                                         foreach (DataRow dr123 in dt1.Rows)
                                                                         {
-                                                                            string Sflag = (dr123["message_status_flag"].ToString());
+                                                                            string Sflag = (dr123["sms_status_flag"].ToString());
                                                                             string uflag = Convert.ToString("N");
                                                                             if (Sflag == uflag)
                                                                             {
@@ -686,7 +683,7 @@ namespace eQMSMessage_FormApp
                                                         {
                                                             SmsStatusMsg = e2.Message;
                                                         }
-                                                    }
+                                                    //}
                                                 }
                                                 // Thread.Sleep(2000);
 
@@ -706,14 +703,14 @@ namespace eQMSMessage_FormApp
                                                     smsview.MenberId = (Convert.ToInt32(drc["members_id"].ToString()));
                                                     smsview.CustId = custid;
                                                     //retrieve name
-                                                    dtCustName = smscontroller.GetCustomerName(smsview);
-                                                    foreach (DataRow Custname in dtCustName.Rows)
-                                                    {
-                                                        string custfname = (Custname["members_firstname"].ToString());
-                                                        string custlname = (Custname["members_lastname"].ToString());
-                                                        string Cname = custfname + " " + custlname;
-                                                        string mobileno = (Custname["members_mobile"].ToString());
-                                                        toAddress = (Custname["members_email"].ToString());
+                                                    //dtCustName = smscontroller.GetCustomerName(smsview);
+                                                    //foreach (DataRow Custname in dtCustName.Rows)
+                                                    //{
+                                                        //string custfname = (Custname["members_firstname"].ToString());
+                                                        //string custlname = (Custname["members_lastname"].ToString());
+                                                        //Cname = custfname + " " + custlname;
+                                                        //string mobileno = (Custname["members_mobile"].ToString());
+                                                        //toAddress = (Custname["members_email"].ToString());
                                                         //retrieve name
                                                         string SmsStatusMsg = string.Empty;
                                                         string SmsDeliveryStatus = string.Empty;
@@ -815,7 +812,7 @@ namespace eQMSMessage_FormApp
                                                                     //"Hi Kara, your ticket number is 040, Approximate waiting time is 00:40 minutes/hours”
 
                                                                     Messaging.MessageController.Settings.DeliveryReport = true;
-                                                                    SMSMessage smsobj = new SMSMessage(mobileno, strmsg);
+                                                                    SMSMessage smsobj = new SMSMessage(QueueTokenGenerationPhoneNo, strmsg);
                                                                     Messaging.MessageController.AddToQueue(smsobj);
                                                                     Messaging.MessageController.SendMessages();
                                                                     //end of Samsung SMS
@@ -834,7 +831,7 @@ namespace eQMSMessage_FormApp
 
                                                                     foreach (DataRow dr123 in dt1.Rows)
                                                                     {
-                                                                        string Sflag = (dr123["message_status_flag"].ToString());
+                                                                        string Sflag = (dr123["sms_status_flag"].ToString());
                                                                         string uflag = Convert.ToString("N");
                                                                         if (Sflag == uflag)
                                                                         {
@@ -962,10 +959,11 @@ namespace eQMSMessage_FormApp
                                                                     {
                                                                         QueueTokenGenerationPhoneNo = 61 + QueueTokenGenerationPhoneNo;
 
-                                                                        int t = 0;
+                                                                        int t = 20;
                                                                         TimeSpan span = TimeSpan.FromMinutes(t);
                                                                         string apxtime = span.ToString(@"hh\:mm");
-                                                                        string strmsg = "Dear" + " " + Cname + ",Your ticket number is:" + QueueTokenGenerationSMS + " . Thanks";
+                                                                        //string strmsg = "Dear" + " " + Cname + ",Your ticket number is:" + QueueTokenGenerationSMS + " . Thanks";
+                                                                        string strmsg = "Hi" + " " + Cname + ", Your ticket number is:" + QueueTokenGenerationSMS + " .Approximate time of service  at " + "" + apxtime + ", Thanks.";
                                                                         //\r\n\rTo track status of your queue no send SMS to 9214002002 e.g.: ATT<space><your Q number>";
                                                                         // string URL = "http://sms.proactivesms.in/sendsms.jsp?user=attsystm&password=attsystm&mobiles=" + QueueTokenGenerationPhoneNo + "&sms=" + strmsg1 + "&senderid=ATTIPL";
                                                                         //string URL = "https://api.aussiesms.com.au/?sendsms&mobileID=61422889101&password=att0424&to=" + QueueTokenGenerationPhoneNo + "&text=" + strmsg1 + "&from=QSoft&msg_type=SMS_TEXT";
@@ -1037,7 +1035,7 @@ namespace eQMSMessage_FormApp
                                                                         //"Hi Kara, your ticket number is 040, Approximate waiting time is 00:40 minutes/hours”
 
                                                                         Messaging.MessageController.Settings.DeliveryReport = true;
-                                                                        SMSMessage smsobj = new SMSMessage(mobileno, strmsg);
+                                                                        SMSMessage smsobj = new SMSMessage(QueueTokenGenerationPhoneNo, strmsg);
                                                                         Messaging.MessageController.AddToQueue(smsobj);
                                                                         Messaging.MessageController.SendMessages();
                                                                         //end of Samsung SMS
@@ -1194,7 +1192,7 @@ namespace eQMSMessage_FormApp
                                                             SmsStatusMsg = e2.Message;
                                                         }
 
-                                                    }
+                                                    //}
                                                 }
                                                 // Thread.Sleep(100);
                                             }
@@ -1597,11 +1595,12 @@ namespace eQMSMessage_FormApp
             {
                 lblmessage.Text = "Internet Is Available";
                 lblrunning.Text = "Application Is Running...";
+
                 MissedQueueSendingSMS();
                 AppRemender();
                 ExpiredAppointmentNotification();
+                QueueTokenGenerationSMS();
 
-                //QueueTokenGenerationSMS();
                 //appointmentalert();
                 
                 System.Data.SqlClient.SqlConnection.ClearAllPools();

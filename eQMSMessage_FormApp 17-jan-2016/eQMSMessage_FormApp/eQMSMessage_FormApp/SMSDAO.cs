@@ -229,11 +229,13 @@ namespace eQMSMessage_FormApp
 
                 // SqlCommand MySqlCommand = new SqlCommand("select q.queu_visit_tnxid,v.visit_queue_no_show,c.customer_mobile from tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_tnx_id=q.queu_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
                 //SqlCommand MySqlCommand = new SqlCommand("select tc.members_id, q.queu_visit_tnxid,v.visit_queue_no_show,tc.members_mobile,q.queue_department_id, v.visit_customer_id from tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queu_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
-                SqlCommand MySqlCommand = new SqlCommand("select tc.members_id, q.queue_visit_tnxid,v.visit_queue_no_show,tc.members_customer_id,q.queue_department_id, v.visit_customer_id from tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queue_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
+                
 
                // SqlCommand MySqlCommand = new SqlCommand("select tc.members_id, q.queue_visit_tnxid,v.visit_queue_no_show,tc.members_customer_id,q.queue_department_id, v.visit_customer_id from tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queue_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
                 //MySqlCommand.Parameters.AddWithValue("@department_id", queueview.DepartmentID);
-
+                //Samsung Sydney
+                //SqlCommand MySqlCommand = new SqlCommand("select tc.members_id, q.queue_visit_tnxid,v.visit_queue_no_show,tc.members_customer_id,q.queue_department_id, v.visit_customer_id from tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queue_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
+                SqlCommand MySqlCommand = new SqlCommand("select DISTINCT  q.queue_visit_tnxid,v.visit_queue_no_show,q.queue_department_id, v.visit_customer_id,v.visit_customer_name from tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_tnx_id=q.queue_visit_tnxid and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.sms_status_flag='N'", MySqlConnection);
                 MySqlConnection.Open();
 
                 SqlDataReader dr = MySqlCommand.ExecuteReader();
@@ -343,7 +345,7 @@ namespace eQMSMessage_FormApp
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             con.Open();
-            string sql = "update tbl_queue_tnx set message_status_flag=@smsstatusflag where queu_visit_tnxid=@queuevisittnxid";
+            string sql = "update tbl_queue_tnx set sms_status_flag=@smsstatusflag where queue_visit_tnxid=@queuevisittnxid";
 
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@smsstatusflag", smsview.SMSStatusFlag);
@@ -368,7 +370,7 @@ namespace eQMSMessage_FormApp
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             con.Open();
-            string sql = "select message_status_flag from tbl_queue_tnx where queu_visit_tnxid=@queuevisittnxid";
+            string sql = "select sms_status_flag from tbl_queue_tnx where queue_visit_tnxid=@queuevisittnxid";
 
             SqlCommand cmd = new SqlCommand(sql, con);
 
@@ -734,8 +736,8 @@ namespace eQMSMessage_FormApp
             try
             {
                 MySqlConnection.Open();
-                string sql = "select DISTINCT td.department_desc, q.queu_visit_tnxid,v.visit_queue_no_show,tc.members_mobile from tbl_department_mst td, tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queu_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.queue_department_id=@Departmentid and td.department_id=@Departmentid";
-                // string sql = "select DISTINCT v.visit_queue_no_show from tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_tnx_id=q.queu_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and sms_status_flag='N'";
+                //string sql = "select DISTINCT td.department_desc, q.queu_visit_tnxid,v.visit_queue_no_show,tc.members_mobile from tbl_department_mst td, tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where v.visit_member_id=tc.members_id and v.visit_tnx_id=q.queu_visit_tnxid and c.customer_id=v.visit_customer_id and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.queue_department_id=@Departmentid and td.department_id=@Departmentid";
+                string sql = "select DISTINCT td.department_desc, q.queue_visit_tnxid,v.visit_queue_no_show from tbl_department_mst td, tbl_customer_dtl tc, tbl_customervisit_tnx v,tbl_queue_tnx q,tbl_customerreg_mst c where  v.visit_tnx_id=q.queue_visit_tnxid and cast(q.queue_datetime as date) = cast(getdate() as date) and q.queue_status_id=1 and q.queue_department_id=@Departmentid and td.department_id=@Departmentid";
 
                 SqlCommand MySqlCommand = new SqlCommand(sql, MySqlConnection);
                 MySqlCommand.Parameters.AddWithValue("@Departmentid", smsview.DepartmentID);
@@ -1041,7 +1043,8 @@ namespace eQMSMessage_FormApp
         {
             SqlConnection MySqlConnection = new SqlConnection(ConnectionString);
             MySqlConnection.Open();
-            string sql = "select DISTINCT tv.visit_customer_id,td.members_id from tbl_customer_dtl td, tbl_customervisit_tnx tv where cast(tv.visit_datetime as date) = cast(getdate() as date) and tv.visit_member_id=td.members_id and tv.visit_queue_no_show=@QueueNo";
+            //string sql = "select DISTINCT tv.visit_customer_id,td.members_id from tbl_customer_dtl td, tbl_customervisit_tnx tv where cast(tv.visit_datetime as date) = cast(getdate() as date) and tv.visit_member_id=td.members_id and tv.visit_queue_no_show=@QueueNo";
+            string sql = "select top 1 tv.visit_customer_id,td.members_id from tbl_customer_dtl td, tbl_customervisit_tnx tv where cast(tv.visit_datetime as date) = cast(getdate() as date) and tv.visit_queue_no_show=@QueueNo";
             SqlCommand MySqlCommand = new SqlCommand(sql, MySqlConnection);
             MySqlCommand.Parameters.AddWithValue("@QueueNo", smsview.QueueNo);
             SqlDataReader dr = MySqlCommand.ExecuteReader();
@@ -1058,6 +1061,7 @@ namespace eQMSMessage_FormApp
             SqlConnection MySqlConnection = new SqlConnection(ConnectionString);
             MySqlConnection.Open();
             string sql = "select * from tbl_sms_tnx where sms_visit_tnxid=@QueueTransactionID and sms_status_flag='N' and sms_queueno=@qno";
+            //string sql ="select * from tbl_sms_tnx where sms_visit_tnxid=1 and sms_status_flag='N' and sms_queueno=1";
             SqlCommand MySqlCommand = new SqlCommand(sql, MySqlConnection);
             MySqlCommand.Parameters.AddWithValue("@QueueTransactionID", smsview.QueueTransaction);
             MySqlCommand.Parameters.AddWithValue("@qno",smsview.MySms);
