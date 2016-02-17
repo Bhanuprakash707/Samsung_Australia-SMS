@@ -1269,7 +1269,7 @@ namespace eQMSMessage_FormApp
                         {
                             //string strmsg = "Hi " + " " + Cname + ", It seems you missed your appointment at the Samsung Experience Stor. \r\nShould you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au";
                             // string strmsg = "Hi " + " " + MissedQueueNo +",It seems you missed your appointment at the Samsung Experience Stor. \r\nShould you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au";
-                            string strmsg = "Hi " + cname + " It seems you missed your appointment at the Samsung Experience Store at " + cappt + "\r\nShould you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au.";
+                            string strmsg = "Hi " + cname + ", It seems you missed your appointment at the Samsung Experience Store at " + cappt + "\r\nShould you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au.";
                             //Hi Kara, It seems you missed your appointment at the Samsung Experience Store at XX:XX, Should you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au
                             //"Hi " + cname + "It seems you missed your appointment at the Samsung Experience Store at " + cappt + "\r\nShould you require a new appointment, please contact 1300 362 603 or visit www.samsung.com.au."; 
                             smsview.SmsDesc = strmsg;
